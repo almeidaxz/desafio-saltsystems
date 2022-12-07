@@ -6,11 +6,18 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import ChatListItem from '../../components/ChatListItem';
 import ChatIntro from '../../components/ChatIntro';
+import ChatWindow from '../../components/ChatWindow';
 
 import './styles.css';
 
 export default function Home() {
-  const [chatList, setChatList] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
+  const [chatList, setChatList] = useState([
+    { chatId: 1, contactName: 'Fulano de tal', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
+    { chatId: 2, contactName: 'Fulano de tei', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
+    { chatId: 3, contactName: 'Fulano de tic', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
+    { chatId: 4, contactName: 'Fulano de tac', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
+  ]);
+  const [activeChat, setActiveChat] = useState({});
 
   return (
     <div className="flex h-screen bg-[#EDEDED]">
@@ -48,14 +55,20 @@ export default function Home() {
           {chatList.map((chat, key) => {
             return <ChatListItem
               key={key}
+              chat={chat}
+              setActiveChat={setActiveChat}
+              active={activeChat.chatId === chatList[key].chatId}
             />
           })}
         </div>
       </aside>
-      <main
-        className='flex-1'
-      >
-        <ChatIntro />
+      <main className='flex-1'>
+        {activeChat.chatId &&
+          <ChatWindow />
+        }
+        {!activeChat.chatId &&
+          <ChatIntro />
+        }
       </main>
     </div>
   )

@@ -1,13 +1,15 @@
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 
-export default function ChatListItem() {
+export default function ChatListItem({ setActiveChat, chat, active }) {
     return (
         <div
+            onClick={(e) => setActiveChat(chat)}
             className='h-[70px] px-3 gap-3 flex items-center cursor-pointer hover:bg-[#F5F5F5]'
+            style={active ? { backgroundColor: '#EBEBEB' } : null}
         >
             <img
                 className='h-12 w-12 rounded-full'
-                src="https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg" alt="chat person avatar"
+                src={chat.contactImage} alt="chat person avatar"
             />
             <div
                 className='w-full min-w-0 pb-1 flex flex-col justify-center flex-wrap border-b'
@@ -15,7 +17,7 @@ export default function ChatListItem() {
                 <div
                     className="w-full flex flex-1 justify-between items-center"
                 >
-                    <p>LUCAS BRAZ</p>
+                    <p>{chat.contactName}</p>
                     <span
                         className='text-[#999] text-xs'
                     >
