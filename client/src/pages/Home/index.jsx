@@ -5,6 +5,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
 
 import ChatListItem from '../../components/ChatListItem';
+import ChatIntro from '../../components/ChatIntro';
 
 import './styles.css';
 
@@ -51,8 +52,10 @@ export default function Home() {
           })}
         </div>
       </aside>
-      <main>
-        ...
+      <main
+        className='flex-1'
+      >
+        <ChatIntro />
       </main>
     </div>
   )
