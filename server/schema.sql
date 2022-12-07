@@ -1,0 +1,21 @@
+CREATE DATABASE wpp_clone_bot;
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    phone_number TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS contacts (
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    contact_id SERIAL NOT NULL,
+    contact_phone TEXT NOT NULL,
+    contact_name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS messages (
+    sender_id INTEGER NOT NULL REFERENCES users(id),
+    receiver_id INTEGER NOT NULL REFERENCES contacts(contact_id),
+    message_body TEXT NOT NULL,
+    send_time TEXT NOT NULL
+);
