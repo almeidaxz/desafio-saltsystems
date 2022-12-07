@@ -1,11 +1,13 @@
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoodIcon from '@mui/icons-material/Mood';
+import SendIcon from '@mui/icons-material/Send';
 
 import './styles.css';
 
 export default function ChatWindow() {
     return (
-        <div className='w-full flex flex-col'>
+        <div className='w-full flex flex-col h-full'>
             <header
                 className='w-full py-3 px-4 flex items-center gap-4 border-b'
             >
@@ -21,10 +23,28 @@ export default function ChatWindow() {
                     </div>
                 </div>
             </header>
-            <main className='chat-body min-h-screen'>
+            <main className='chat-body'>
 
             </main>
-            <footer></footer>
+            <footer
+                className='h-16 px-6 flex items-center gap-4'
+            >
+                <MoodIcon
+                    className='cursor-pointer'
+                    fontSize='medium'
+                    style={{ color: '#919191' }}
+                />
+                <input
+                    className='flex-1 h-10 pl-4 border-none outline-none rounded-lg'
+                    type="text"
+                    placeholder='Mensagem'
+                />
+                <SendIcon
+                    className='cursor-pointer'
+                    fontSize='medium'
+                    style={{ color: '#919191' }}
+                />
+            </footer>
         </div>
     )
 }
