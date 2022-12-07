@@ -1,10 +1,15 @@
+import { useState } from 'react';
+
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+
+import ChatListItem from '../../components/ChatListItem';
+
+import './styles.css';
 
 export default function Home() {
-  const [chatList, setChatList] = useState([{}, {}, {}, {}])
+  const [chatList, setChatList] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
 
   return (
     <div className="flex h-screen bg-[#EDEDED]">
@@ -36,9 +41,13 @@ export default function Home() {
             />
           </div>
         </div>
-        <div>
+        <div
+          className='chat-list flex-1 bg-white overflow-y-auto'
+        >
           {chatList.map((chat, key) => {
-
+            return <ChatListItem
+              key={key}
+            />
           })}
         </div>
       </aside>
