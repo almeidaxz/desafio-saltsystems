@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS chats (
 CREATE TABLE IF NOT EXISTS messages (
     chat_id INTEGER NOT NULL REFERENCES chats(id),
     sender_id INTEGER NOT NULL REFERENCES users(id),
-    receiver_id INTEGER NOT NULL REFERENCES contacts(contact_id),
+    receiver_id INTEGER NOT NULL REFERENCES users(id),
     message_body TEXT NOT NULL,
     send_time TEXT NOT NULL
 );
