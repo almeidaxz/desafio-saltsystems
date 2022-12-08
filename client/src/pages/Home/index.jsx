@@ -17,6 +17,11 @@ export default function Home() {
     { chatId: 3, contactName: 'Fulano de tic', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
     { chatId: 4, contactName: 'Fulano de tac', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
   ]);
+  const [user, setUser] = useState({
+    id: 1234,
+    avatar: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg',
+    name: 'Lucas Braz'
+  });
   const [activeChat, setActiveChat] = useState({});
 
   return (
@@ -27,7 +32,8 @@ export default function Home() {
         >
           <img
             className="h-10 w-10 rounded-full"
-            src="https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg" alt="dummy avatar photo"
+            src={user.avatar}
+            alt="dummy avatar photo"
           />
           <div className="flex">
             <ChatIcon style={{ color: '#919191' }} />
@@ -64,7 +70,9 @@ export default function Home() {
       </aside>
       <main className='flex-1'>
         {activeChat.chatId &&
-          <ChatWindow />
+          <ChatWindow
+            user={user}
+          />
         }
         {!activeChat.chatId &&
           <ChatIntro />

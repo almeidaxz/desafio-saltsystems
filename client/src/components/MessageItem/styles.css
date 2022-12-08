@@ -2,4 +2,5 @@
     width: fit-content;
     max-width: 90%;
     box-shadow: 0 1px 1px #CCC;
+    justify-content: flex-start;
 }

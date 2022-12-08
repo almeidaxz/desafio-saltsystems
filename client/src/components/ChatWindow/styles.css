@@ -8,6 +8,15 @@
     background-image: url('../../assets/chat-bg.webp');
 }
 
+.chat-body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .emojis-container {
     transition: all ease 0.3s;
     overflow-y: hidden;

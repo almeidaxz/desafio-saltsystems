@@ -6,13 +6,33 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import EmojiPicker from 'emoji-picker-react';
 
 import './styles.css';
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import MessageItem from '../MessageItem';
 
-export default function ChatWindow() {
+export default function ChatWindow({ user }) {
+    const chatBody = useRef();
     const [message, setMessage] = useState('');
     const [emojiOpen, setEmojiOpen] = useState(false);
-    const [messageList, setMessageList] = useState([1, 2, 3, 4]);
+    const [messageList, setMessageList] = useState([
+        {
+            authorId: 123,
+            authorName: 'Fulaninho',
+            body: 'DIREITA ABLUBLEBLE',
+            time: '15:23'
+        },
+        {
+            authorId: 123,
+            authorName: 'Fulaninho',
+            body: 'BOLSONARO PRESO AMANHÃ',
+            time: '15:24'
+        },
+        {
+            authorId: 1234,
+            authorName: 'Fulaninho',
+            body: 'FAMILÍCIA BOLSONARO',
+            time: '15:25'
+        }
+    ]);
     const previewConfig = {
         defaultEmoji: 'none',
         defaultCaption: 'none',
@@ -22,6 +42,11 @@ export default function ChatWindow() {
     const handleEmojiClick = (e) => {
         setMessage(`${message}${e.emoji}`)
     }
+
+    useEffect(() => {
+        const chatHistory = document.querySelector('.chat-body');
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    });
 
     return (
         <div className='w-full flex flex-col h-full'>
@@ -40,11 +65,15 @@ export default function ChatWindow() {
                     </div>
                 </div>
             </header>
-            <main className='w-full chat-body py-5 px-8'>
+            <main
+                className='chat-body w-full flex flex-col py-5 px-8'
+                ref={chatBody}
+            >
                 {messageList.map((message, key) => {
                     return <MessageItem
                         key={key}
                         message={message}
+                        user={user}
                     />
                 })}
             </main>
