@@ -1,0 +1,14 @@
+.contact-list{
+    flex: 1;
+    overflow-y: auto;
+    transition: all ease 0.3s;
+}
+
+.contact-list::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.contact-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+}

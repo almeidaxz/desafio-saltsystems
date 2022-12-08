@@ -9,6 +9,7 @@ import ChatIntro from '../../components/ChatIntro';
 import ChatWindow from '../../components/ChatWindow';
 
 import './styles.css';
+import ContactList from '../../components/ContactList';
 
 export default function Home() {
   const [chatList, setChatList] = useState([
@@ -22,11 +23,17 @@ export default function Home() {
     avatar: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg',
     name: 'Lucas Braz'
   });
+  const [showContactList, setShowContactList] = useState(false);
   const [activeChat, setActiveChat] = useState({});
 
   return (
     <div className="flex h-screen bg-[#EDEDED]">
       <aside className="w-[35%] max-w-[415px] flex flex-col border-r">
+        <ContactList
+          showContactList={showContactList}
+          setShowContactList={setShowContactList}
+          setActiveChat={setActiveChat}
+        />
         <header
           className="h-16 px-4 flex justify-between items-center cursor-pointer"
         >
@@ -36,7 +43,10 @@ export default function Home() {
             alt="dummy avatar photo"
           />
           <div className="flex">
-            <ChatIcon style={{ color: '#919191' }} />
+            <ChatIcon
+              onClick={(e) => setShowContactList(true)}
+              style={{ color: '#919191' }}
+            />
             <MoreVertIcon style={{ color: '#919191' }} />
           </div>
         </header>
