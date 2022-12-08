@@ -8,8 +8,10 @@ import ChatListItem from '../../components/ChatListItem';
 import ChatIntro from '../../components/ChatIntro';
 import ChatWindow from '../../components/ChatWindow';
 
-import './styles.css';
 import ContactList from '../../components/ContactList';
+import Login from '../../components/Login';
+
+import './styles.css';
 
 export default function Home() {
   const [chatList, setChatList] = useState([
@@ -28,6 +30,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen bg-[#EDEDED]">
+      <Login />
       <aside className="w-[35%] max-w-[415px] flex flex-col border-r">
         <ContactList
           showContactList={showContactList}
