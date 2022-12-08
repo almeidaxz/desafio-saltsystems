@@ -1,5 +1,4 @@
 .chat-body {
-    height: 100%;
     flex: 1;
     background-color: blue;
     overflow-y: auto;

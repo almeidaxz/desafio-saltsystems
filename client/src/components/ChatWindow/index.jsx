@@ -7,10 +7,12 @@ import EmojiPicker from 'emoji-picker-react';
 
 import './styles.css';
 import { useState } from 'react';
+import MessageItem from '../MessageItem';
 
 export default function ChatWindow() {
     const [message, setMessage] = useState('');
     const [emojiOpen, setEmojiOpen] = useState(false);
+    const [messageList, setMessageList] = useState([1, 2, 3, 4]);
     const previewConfig = {
         defaultEmoji: 'none',
         defaultCaption: 'none',
@@ -38,8 +40,13 @@ export default function ChatWindow() {
                     </div>
                 </div>
             </header>
-            <main className='chat-body'>
-
+            <main className='w-full chat-body py-5 px-8'>
+                {messageList.map((message, key) => {
+                    return <MessageItem
+                        key={key}
+                        message={message}
+                    />
+                })}
             </main>
             <div
                 className='emojis-container'
