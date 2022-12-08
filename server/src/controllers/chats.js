@@ -24,4 +24,17 @@ const listChatMessages = async (req, res) => {
     }
 }
 
-module.exports = { listChats, listChatMessages };
+const createChat = async (req, res) => {
+    const { user1_id, user2_id } = req.body;
+
+    try {
+        await knex('chats').insert({ user1_id, user2_id });
+
+        return res.status(201).json();
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ message: 'Erro no servidor.' });
+    }
+}
+
+module.exports = { listChats, listChatMessages, createChat };

@@ -14,11 +14,9 @@ CREATE TABLE IF NOT EXISTS contacts (
 );
 
 CREATE TABLE IF NOT EXISTS chats (
-    id SERIAL PRIMARY KEY;
+    id SERIAL PRIMARY KEY,
     user1_id INTEGER NOT NULL REFERENCES users(id),
-    user2_id INTEGER NOT NULL REFERENCES contacts(contact_id),
-    user1_name TEXT NOT NULL,
-    user2_name TEXT NOT NULL
+    user2_id INTEGER NOT NULL REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS messages (
