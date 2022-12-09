@@ -1,8 +1,10 @@
 const knex = require('../services/dbConnection');
 
 const listChats = async (req, res) => {
+    const { user_id } = req.params;
+
     try {
-        const chatList = await knex('chats');
+        const chatList = await knex('chats').where({ user1_id: user_id });
 
         return res.status(200).json(chatList);
     } catch (error) {
@@ -25,10 +27,10 @@ const listChatMessages = async (req, res) => {
 }
 
 const createChat = async (req, res) => {
-    const { user1_id, user2_id } = req.body;
+    const { user1_id, user2_id, user1_name, user2_name } = req.body;
 
     try {
-        await knex('chats').insert({ user1_id, user2_id });
+        await knex('chats').insert({ user1_id, user2_id, user1_name, user2_name });
 
         return res.status(201).json();
     } catch (error) {

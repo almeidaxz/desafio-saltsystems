@@ -8,7 +8,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/login', userSignIn);
-routes.get('/chat_list', listChats);
+routes.get('/chat_list/:user_id', listChats);
 routes.get('/chat_messages/:id', listChatMessages);
 routes.post('/create_chat', createChat);
 routes.post('/send_message', sendMessage);

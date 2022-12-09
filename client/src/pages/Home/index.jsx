@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -9,28 +9,43 @@ import ChatIntro from '../../components/ChatIntro';
 import ChatWindow from '../../components/ChatWindow';
 
 import ContactList from '../../components/ContactList';
-import Login from '../../components/Login';
 
 import './styles.css';
+import api from '../../services/api';
 
 export default function Home() {
-  const [chatList, setChatList] = useState([
-    { chatId: 1, contactName: 'Fulano de tal', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
-    { chatId: 2, contactName: 'Fulano de tei', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
-    { chatId: 3, contactName: 'Fulano de tic', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
-    { chatId: 4, contactName: 'Fulano de tac', contactImage: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg' },
-  ]);
-  const [user, setUser] = useState({
-    id: 1234,
-    avatar: 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg',
-    name: 'Lucas Braz'
-  });
+  const [chatList, setChatList] = useState([]);
+  const [user, setUser] = useState(null);
   const [showContactList, setShowContactList] = useState(false);
   const [activeChat, setActiveChat] = useState({});
 
+  const getUserData = async () => {
+    let logedUser = {};
+
+    const id = localStorage.getItem('id');
+    const name = localStorage.getItem('name');
+    const email = localStorage.getItem('email');
+    const avatar = 'https://www.jockeypr.com.br/wp-content/uploads/2018/05/Dummy.jpg';
+    logedUser = { id, email, name, avatar };
+
+    setUser(logedUser);
+
+    try {
+      console.log(user);
+      const { data } = await api.get(`chat_list/${logedUser.id}`);
+
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <div className="flex h-screen bg-[#EDEDED]">
-      <Login />
       <aside className="w-[35%] max-w-[415px] flex flex-col border-r">
         <ContactList
           showContactList={showContactList}
@@ -42,7 +57,7 @@ export default function Home() {
         >
           <img
             className="h-10 w-10 rounded-full"
-            src={user.avatar}
+            src={user?.avatar}
             alt="dummy avatar photo"
           />
           <div className="flex">
